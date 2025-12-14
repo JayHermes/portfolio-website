@@ -33,7 +33,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 bg-gray-900">
+    <section id="contact" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -42,13 +42,11 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
-              Get In Touch
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            Get In Touch
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-primary-600 mx-auto mb-4"></div>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <div className="w-24 h-0.5 bg-white mx-auto mb-4"></div>
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
           </p>
         </motion.div>
@@ -62,7 +60,7 @@ export default function Contact() {
           >
             <div>
               <h3 className="text-2xl font-bold text-white mb-4">Let's Connect</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-white/80 leading-relaxed">
                 Feel free to reach out if you're looking for a Developer Relations professional, have a question, or just want to connect.
               </p>
             </div>
@@ -76,11 +74,11 @@ export default function Contact() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                   transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                  whileHover={{ scale: 1.05, x: 10 }}
-                  className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700 hover:border-primary-500 transition-colors group"
+                  whileHover={{ scale: 1.05, x: 10, backgroundColor: '#fff', color: '#000' }}
+                  className="flex items-center gap-4 p-4 bg-white/5 rounded-lg border border-white/10 hover:border-white/30 transition-all group"
                 >
                   <span className="text-2xl">{link.icon}</span>
-                  <span className="text-gray-300 group-hover:text-primary-400 transition-colors">
+                  <span className="text-white/80 group-hover:text-black transition-colors">
                     {link.name}
                   </span>
                 </motion.a>
@@ -96,7 +94,7 @@ export default function Contact() {
             className="space-y-6"
           >
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
                 Name
               </label>
               <input
@@ -105,12 +103,12 @@ export default function Contact() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-primary-500 transition-colors"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-white transition-colors"
                 placeholder="Joseph Joe"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
                 Email
               </label>
               <input
@@ -119,12 +117,12 @@ export default function Contact() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
-                className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-primary-500 transition-colors"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-white transition-colors"
                 placeholder="samjoejnr@gmail.com"
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-2">
                 Message
               </label>
               <textarea
@@ -133,15 +131,15 @@ export default function Contact() {
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 required
                 rows={6}
-                className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-primary-500 transition-colors resize-none"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-white transition-colors resize-none"
                 placeholder="Your message..."
               />
             </div>
             <motion.button
               type="submit"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, backgroundColor: '#fff', color: '#000' }}
               whileTap={{ scale: 0.95 }}
-              className="w-full px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-primary-500/50 transition-shadow"
+              className="w-full px-8 py-3 bg-white text-black rounded-lg font-semibold border-2 border-white transition-all"
             >
               {submitted ? 'Message Sent! ✓' : 'Send Message'}
             </motion.button>

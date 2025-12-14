@@ -8,10 +8,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-transparent to-primary-600/20" />
-      
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -22,21 +19,16 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-bold mb-6"
+            className="text-5xl md:text-7xl font-bold mb-6 text-white"
           >
-            <span className="bg-gradient-to-r from-white via-primary-200 to-primary-400 bg-clip-text text-transparent">
-              Hi, I'm{'Joseph Joe '}
-            </span>
-            <span className="bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
-              Joseph Joe
-            </span>
+            Hi, I'm <span className="border-b-2 border-white">Joseph Joe</span>
           </motion.h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto"
           >
             Developer Relations, Community Growth and Advocacy, Marketing and Contents
           </motion.p>
@@ -45,7 +37,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto"
+            className="text-lg text-white/60 mb-12 max-w-2xl mx-auto"
           >
             I connect developers with technology through strategic content, community building, and advocacy.
             Passionate about empowering developer communities and creating meaningful engagement.
@@ -59,17 +51,17 @@ export default function Hero() {
           >
             <motion.a
               href="#projects"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, backgroundColor: '#fff', color: '#000' }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-primary-500/50 transition-shadow"
+              className="px-8 py-3 bg-white text-black rounded-lg font-semibold border-2 border-white transition-all"
             >
               View My Work
             </motion.a>
             <motion.a
               href="#contact"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, backgroundColor: '#000', color: '#fff' }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 border-2 border-primary-500 text-primary-400 rounded-lg font-semibold hover:bg-primary-500/10 transition-colors"
+              className="px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-black transition-all"
             >
               Get In Touch
             </motion.a>
@@ -81,7 +73,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1 }}
           onClick={scrollToNext}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-gray-400 hover:text-primary-400 transition-colors"
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white transition-colors"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
