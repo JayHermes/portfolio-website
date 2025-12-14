@@ -60,59 +60,94 @@ export default function Projects() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-gray-800/50 rounded-lg overflow-hidden border border-gray-700 hover:border-primary-500 transition-all hover:shadow-lg hover:shadow-primary-500/20 group"
-            >
-              <div className="h-48 bg-gradient-to-br from-primary-900/50 to-primary-600/50 flex items-center justify-center text-6xl">
-                {project.image}
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-gray-300 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-gray-700/50 rounded-full text-xs text-gray-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+          {projects.map((project, index) => {
+            const projectTitle = project.title || project.event || project.content || `Project ${index + 1}`
+            const projectImage = project.image || '📁'
+            
+            return (
+              <motion.div
+                key={projectTitle}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-gray-800/50 rounded-lg overflow-hidden border border-gray-700 hover:border-primary-500 transition-all hover:shadow-lg hover:shadow-primary-500/20 group"
+              >
+                <div className="h-48 bg-gradient-to-br from-primary-900/50 to-primary-600/50 flex items-center justify-center text-6xl">
+                  {projectImage}
                 </div>
-                <div className="flex gap-4">
-                  <motion.a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-4 py-2 bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-600 transition-colors"
-                  >
-                    Live Demo
-                  </motion.a>
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg font-semibold hover:border-primary-500 hover:text-primary-400 transition-colors"
-                  >
-                    GitHub
-                  </motion.a>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors">
+                    {projectTitle}
+                  </h3>
+                  <p className="text-gray-300 mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+                  {(project.technologies || project.features) && (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {(project.technologies || project.features || []).map((tech: string) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 bg-gray-700/50 rounded-full text-xs text-gray-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <div className="flex gap-4">
+                    {project.link && (
+                      <motion.a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-4 py-2 bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-600 transition-colors"
+                      >
+                        {project.video ? 'Watch Video' : 'Live Demo'}
+                      </motion.a>
+                    )}
+                    {project.video && (
+                      <motion.a
+                        href={project.video}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-4 py-2 bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-600 transition-colors"
+                      >
+                        Watch Video
+                      </motion.a>
+                    )}
+                    {project.github && (
+                      <motion.a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg font-semibold hover:border-primary-500 hover:text-primary-400 transition-colors"
+                      >
+                        GitHub
+                      </motion.a>
+                    )}
+                    {project.photos && (
+                      <motion.a
+                        href={project.photos}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg font-semibold hover:border-primary-500 hover:text-primary-400 transition-colors"
+                      >
+                        View Photos
+                      </motion.a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
