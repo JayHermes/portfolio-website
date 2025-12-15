@@ -27,8 +27,9 @@ const projects = [
     content: 'Seasons Introduction Video ',
     description: 'A brand explainer video into Seasons and how it works.',
     technologies: ['Video Editing', 'Video Production', 'Video Marketing', 'Video Analytics'],
+    image: '/seasons-video-cover.png',
+    imageType: 'file',
     video: 'https://x.com/Web3Sultan_/status/1990652858803298724?s=20',
-    videoType: 'twitter',
   },
   {
     event: 'CodeStory{Uyo}',
@@ -38,6 +39,15 @@ const projects = [
     imageType: 'file',
     link: 'https://x.com/Web3Sultan_/status/1991084415267623299?s=20',
     photos: 'https://drive.google.com/drive/folders/163GClV-2e_yF9GYPL09ewRi-TXJGaP9D',
+  },
+  {
+    event: 'Shardeum Mini PayFi Hackathon',
+    description: 'First Shardeum Buildathon in Nigeria with rewards for developers who build functional Payfi dapps.',
+    features: ['Hackathon', 'Shardeum', 'PayFi dApps', 'Developer Rewards', 'First in Nigeria'],
+    image: '/shardeum-hackathon.jpg',
+    imageType: 'file',
+    link: 'https://x.com/Web3Sultan_/status/1962504452478288160?s=20',
+    photos: 'https://photos.app.goo.gl/QSb122rnbK1nmrPq8',
   },
 ]
 
@@ -66,7 +76,7 @@ export default function Projects() {
             const projectTitle = project.title || project.event || project.content || `Project ${index + 1}`
             const projectImage = project.image || '📁'
             const isImageFile = project.imageType === 'file'
-            const isVideo = project.videoType === 'twitter'
+            const isVideo = (project as any).videoType === 'twitter'
             
             // Extract Twitter video ID from URL
             const getTwitterVideoId = (url: string) => {
@@ -82,7 +92,38 @@ export default function Projects() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-white/5 rounded-lg overflow-hidden border border-white/10 hover:border-white/30 transition-all hover:bg-white/10 group"
               >
-                {isVideo && project.video ? (
+                {isImageFile && project.video ? (
+                  <div className="h-64 bg-black border-b border-white/10 relative overflow-hidden group/image">
+                    <Image
+                      src={projectImage}
+                      alt={projectTitle}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      onError={(e) => {
+                        console.error('Image failed to load:', projectImage)
+                        e.currentTarget.style.display = 'none'
+                      }}
+                    />
+                    <a
+                      href={project.video}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute inset-0 flex items-center justify-center group/play"
+                    >
+                      <div className="absolute inset-0 bg-black/40 group-hover/play:bg-black/50 transition-colors"></div>
+                      <div className="relative z-10 text-center">
+                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center group-hover/play:bg-white/30 group-hover/play:scale-110 transition-all">
+                          <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.5 8.5v7l6-3.5-6-3.5z"/>
+                          </svg>
+                        </div>
+                        <p className="text-white text-sm font-semibold">Watch Video</p>
+                        <p className="text-white/60 text-xs mt-1">Click to view on X</p>
+                      </div>
+                    </a>
+                  </div>
+                ) : isVideo && project.video ? (
                   <div className="h-64 bg-black border-b border-white/10 relative overflow-hidden">
                     <div className="w-full h-full flex items-center justify-center">
                       <a
