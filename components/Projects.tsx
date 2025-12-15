@@ -7,12 +7,13 @@ import Image from 'next/image'
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce solution with payment integration, user authentication, and admin dashboard.',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    image: '🛒',
-    link: '#',
-    github: '#',
+    title: 'Freelance Landing Page',
+    description:
+      'A clean, responsive landing page for freelancers, showcasing services, client stories, and payment flow.',
+    technologies: ['HTML', 'CSS', 'Responsive Design'],
+    image: '🧾',
+    link: 'https://github.com/JayHermes/Freelance-landing',
+    github: 'https://github.com/JayHermes/Freelance-landing',
   },
   {
     event: 'EigenTribe Launch and Onboarding Event',
