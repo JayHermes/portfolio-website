@@ -20,6 +20,7 @@ const projects = [
     features: ['Hands-on Workshop', 'Private access to join Eigen Community', 'Developer and Research support'],
     image: '/eigen-onboarding-event.jpg',
     imageType: 'file',
+    link: 'https://x.com/Web3Sultan_/status/1957320323990163472?s=20',
     photos: 'https://photos.app.goo.gl/NvSk9j2GbRmTSA8A7',
   },
   {
@@ -30,12 +31,13 @@ const projects = [
     videoType: 'twitter',
   },
   {
-    title: 'Social Media Analytics',
-    description: 'Analytics platform for tracking social media performance with detailed insights and reports.',
-    technologies: ['Vue.js', 'Python', 'D3.js', 'REST APIs'],
-    image: '📊',
-    link: '#',
-    github: '#',
+    event: 'CodeStory{Uyo}',
+    description: 'First Story Buildathon In Nigeria powered by story Foundation with 450k+ naira in rewards.',
+    features: ['Buildathon', 'Story Foundation', '450k+ Naira Rewards', 'First in Nigeria'],
+    image: '/codestory-uyo.jpg',
+    imageType: 'file',
+    link: 'https://x.com/Web3Sultan_/status/1991084415267623299?s=20',
+    photos: 'https://drive.google.com/drive/folders/163GClV-2e_yF9GYPL09ewRi-TXJGaP9D',
   },
 ]
 
@@ -112,7 +114,14 @@ export default function Projects() {
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
+                      onError={(e) => {
+                        console.error('Image failed to load:', projectImage)
+                        e.currentTarget.style.display = 'none'
+                      }}
                     />
+                    <div className="absolute inset-0 bg-white/5 flex items-center justify-center text-white/40 text-sm">
+                      Image loading...
+                    </div>
                   </div>
                 ) : (
                   <div className="h-48 bg-white/5 flex items-center justify-center text-6xl border-b border-white/10">
