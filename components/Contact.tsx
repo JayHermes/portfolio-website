@@ -5,10 +5,10 @@ import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 
 const socialLinks = [
-  { name: 'GitHub', icon: '💻', url: 'https://github.com' },
-  { name: 'LinkedIn', icon: '💼', url: 'https://linkedin.com' },
-  { name: 'Twitter', icon: '🐦', url: 'https://twitter.com' },
-  { name: 'Email', icon: '✉️', url: 'mailto:your.email@example.com' },
+  { name: 'Email', icon: '✉️', url: 'mailto:samjoejnr@gmail.com' },
+  { name: 'X (Twitter)', icon: '🐦', url: 'https://x.com/Web3Sultan_' },
+  { name: 'LinkedIn', icon: '💼', url: 'https://www.linkedin.com/in/joseph-joe-262112216' },
+  { name: 'GitHub', icon: '💻', url: 'https://github.com/JayHermes' },
 ]
 
 export default function Contact() {

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import Image from 'next/image'
 
 const projects = [
   {
@@ -17,8 +18,8 @@ const projects = [
     event: 'EigenTribe Launch and Onboarding Event',
     description: 'Organized and hosted a launch and onboarding event for EigenTribe, the community and vibe layer of Eigen. Also, the first in NIgeria!',
     features: ['Hands-on Workshop', 'Private access to join Eigen Community', 'Developer and Research support'],
-    image: 'C:\Users\JOE\Downloads\Eigen onboarding event.jpg',
-    link: 'https://x.com/Web3Sultan_/status/1957320323990163472?s=20',
+    image: '/eigen-onboarding-event.jpg',
+    imageType: 'file',
     photos: 'https://photos.app.goo.gl/NvSk9j2GbRmTSA8A7',
   },
   {
@@ -26,6 +27,7 @@ const projects = [
     description: 'A brand explainer video into Seasons and how it works.',
     technologies: ['Video Editing', 'Video Production', 'Video Marketing', 'Video Analytics'],
     video: 'https://x.com/Web3Sultan_/status/1990652858803298724?s=20',
+    videoType: 'twitter',
   },
   {
     title: 'Social Media Analytics',
@@ -61,6 +63,14 @@ export default function Projects() {
           {projects.map((project, index) => {
             const projectTitle = project.title || project.event || project.content || `Project ${index + 1}`
             const projectImage = project.image || '📁'
+            const isImageFile = project.imageType === 'file'
+            const isVideo = project.videoType === 'twitter'
+            
+            // Extract Twitter video ID from URL
+            const getTwitterVideoId = (url: string) => {
+              const match = url.match(/status\/(\d+)/)
+              return match ? match[1] : null
+            }
             
             return (
               <motion.div
@@ -70,9 +80,45 @@ export default function Projects() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-white/5 rounded-lg overflow-hidden border border-white/10 hover:border-white/30 transition-all hover:bg-white/10 group"
               >
-                <div className="h-48 bg-white/5 flex items-center justify-center text-6xl border-b border-white/10">
-                  {projectImage}
-                </div>
+                {isVideo && project.video ? (
+                  <div className="h-64 bg-black border-b border-white/10 relative overflow-hidden">
+                    <div className="w-full h-full flex items-center justify-center">
+                      <a
+                        href={project.video}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full h-full flex items-center justify-center group"
+                      >
+                        <div className="relative w-full h-full bg-black/50 flex items-center justify-center">
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5"></div>
+                          <div className="relative z-10 text-center">
+                            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.5 8.5v7l6-3.5-6-3.5z"/>
+                              </svg>
+                            </div>
+                            <p className="text-white text-sm font-semibold">Watch Video</p>
+                            <p className="text-white/60 text-xs mt-1">Click to view on X</p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                ) : isImageFile ? (
+                  <div className="h-64 bg-black border-b border-white/10 relative overflow-hidden">
+                    <Image
+                      src={projectImage}
+                      alt={projectTitle}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-48 bg-white/5 flex items-center justify-center text-6xl border-b border-white/10">
+                    {projectImage}
+                  </div>
+                )}
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-white mb-3 group-hover:underline transition-all">
                     {projectTitle}
@@ -93,7 +139,7 @@ export default function Projects() {
                     </div>
                   )}
                   <div className="flex gap-4 flex-wrap">
-                    {project.link && (
+                    {project.link && !isVideo && (
                       <motion.a
                         href={project.link}
                         target="_blank"
@@ -102,10 +148,10 @@ export default function Projects() {
                         whileTap={{ scale: 0.95 }}
                         className="px-4 py-2 bg-white text-black rounded-lg font-semibold border-2 border-white transition-all"
                       >
-                        {project.video ? 'Watch Video' : 'Live Demo'}
+                        View Post
                       </motion.a>
                     )}
-                    {project.video && (
+                    {project.video && !isVideo && (
                       <motion.a
                         href={project.video}
                         target="_blank"
@@ -115,6 +161,18 @@ export default function Projects() {
                         className="px-4 py-2 bg-white text-black rounded-lg font-semibold border-2 border-white transition-all"
                       >
                         Watch Video
+                      </motion.a>
+                    )}
+                    {isVideo && project.video && (
+                      <motion.a
+                        href={project.video}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05, backgroundColor: '#000', color: '#fff' }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-4 py-2 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-black transition-all"
+                      >
+                        Open on X
                       </motion.a>
                     )}
                     {project.github && (

@@ -39,8 +39,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg text-white/60 mb-12 max-w-2xl mx-auto"
           >
-            I connect developers with technology through strategic content, community building, and advocacy.
-            Passionate about empowering developer communities and creating meaningful engagement.
+             .
           </motion.p>
           
           <motion.div
